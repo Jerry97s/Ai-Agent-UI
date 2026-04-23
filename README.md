@@ -17,6 +17,20 @@ Windows용 **WPF 클라이언트**와 **Python(FastAPI) 에이전트 서버**를
 2. **클라이언트**  
    `AiAgentUi` 프로젝트를 Visual Studio 또는 `dotnet run`으로 실행 (Windows / .NET 8).
 
+3. **테스트**  
+   ```powershell
+   dotnet test .\AiAgentUi.sln -c Release
+   ```
+   자세한 내용은 [`docs/TESTING.md`](./docs/TESTING.md).
+
+## 문서 인덱스
+
+| 문서 | 내용 |
+|------|------|
+| [`docs/API.md`](./docs/API.md) | 에이전트 REST 엔드포인트 요약 |
+| [`docs/TESTING.md`](./docs/TESTING.md) | 단위 테스트·수동 검증·CI |
+| [`docs/SECURITY_AND_DEPLOYMENT.md`](./docs/SECURITY_AND_DEPLOYMENT.md) | 보안 전제·배포 체크리스트 |
+
 ## 프로젝트 분석 요약
 
 | 영역 | 내용 |
@@ -36,7 +50,7 @@ Windows용 **WPF 클라이언트**와 **Python(FastAPI) 에이전트 서버**를
 ### 단점 / 리스크
 
 - 에이전트 서버 샘플은 **에코/플레이스홀더**라 실제 LLM 연동·인증·과금은 별도 구현 필요.
-- **로컬 HTTP만** 전제라 TLS·API 키 노출 방지·원격 배포 시 보안 설계가 비어 있음.
+- **동일 PC 루프백** 외 원격 접속 시에는 [`docs/SECURITY_AND_DEPLOYMENT.md`](./docs/SECURITY_AND_DEPLOYMENT.md)대로 TLS·인증을 반드시 추가해야 함.
 - 긴 응답·대용량 파일 처리는 **메모리·타임아웃** 튜닝이 필요할 수 있음.
 - WPF + 트레이·핫키는 **Windows 전용**이다.
 
@@ -47,10 +61,10 @@ Windows용 **WPF 클라이언트**와 **Python(FastAPI) 에이전트 서버**를
 | 아키텍처·코드 구조 | **8** | MVVM·서비스 추상화가 일관적 |
 | UI/UX 완성도 | **8** | 탭·지속성·단축키 등 데스크톱 앱으로서 요소 풍부 |
 | 백엔드(에이전트) 완성도 | **6** | API 뼈대는 양호, 실제 AI 로직은 연동 대기 |
-| 보안·배포 | **6** | 로컬 프로토타입에는 적합, 프로덕션 가드는 미흡 |
-| 테스트·문서 | **6** | 자동 테스트·API 문서는 최소 수준 |
+| 보안·배포 | **8** | 위협 모델·체크리스트·환경 변수 안내 ([`SECURITY_AND_DEPLOYMENT`](./docs/SECURITY_AND_DEPLOYMENT.md)); 원격 시 TLS/인증은 여전히 구현 과제 |
+| 테스트·문서 | **8** | xUnit 자동 테스트·[`API`](./docs/API.md)·[`TESTING`](./docs/TESTING.md); GitHub Actions에서 `dotnet test` |
 
-**종합 (가중 평균 개념): 약 7 / 10** — *데스크톱 에이전트 클라이언트 뼈대로는 상위권, “완성된 제품 서비스”까지는 백엔드·보안·운영 항목 보강 필요.*
+**종합 (가중 평균 개념): 약 7.3 / 10** — *클라이언트·문서·CI는 제품형에 가깝게 정리되었으며, 에이전트 비즈니스 로직(LLM)·원격 배포 세부 보안은 프로젝트별로 채워 넣어야 한다.*
 
 ### 확장성
 
@@ -64,9 +78,11 @@ Windows용 **WPF 클라이언트**와 **Python(FastAPI) 에이전트 서버**를
 ```
 AI_Agent_UI/
 ├── AiAgentUi/          # C# WPF 클라이언트
+├── AiAgentUi.Tests/    # xUnit (DTO·AgentApiClient)
 ├── python/             # FastAPI 에이전트
+├── docs/               # API · 테스트 · 보안/배포
 ├── COMMITS.md          # 커밋 이력 (CI로 자동 갱신)
-└── .github/workflows/  # COMMITS.md 자동 업데이트
+└── .github/workflows/  # COMMITS 자동 업데이트 · dotnet CI
 ```
 
 ## 라이선스
