@@ -50,5 +50,5 @@ jobs:
             echo "COMMITS.md already up to date."
             exit 0
           fi
-          git commit -m "docs: refresh COMMITS.md [skip ci]"
+          git commit -m "문서: COMMITS.md 자동 갱신 [skip ci]"
           git push
