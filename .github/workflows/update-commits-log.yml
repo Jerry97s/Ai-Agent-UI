@@ -1,0 +1,54 @@
+# main/master 푸시 시 COMMITS.md를 최신 커밋 순으로 재생성합니다.
+# 문서 커밋 메시지에 [skip ci]가 있으면 실행하지 않아 루프를 막습니다.
+
+name: Update commit log
+
+on:
+  push:
+    branches: [main, master]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: update-commits-md
+  cancel-in-progress: true
+
+jobs:
+  regenerate-commits-md:
+    if: ${{ !contains(github.event.head_commit.message, '[skip ci]') }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Regenerate COMMITS.md
+        shell: bash
+        run: |
+          set -euo pipefail
+          {
+            echo '# 커밋 기록 (Commit log)'
+            echo ''
+            echo '> **최신 커밋이 목록 상단입니다.** 자동 생성: `.github/workflows/update-commits-log.yml`'
+            echo '> [← README로](./README.md)'
+            echo ''
+            echo '---'
+            echo ''
+            git log -80 --date=iso-strict --pretty=format:'## %ad · `%h`%n%n**%s**%n%n**작성자:** %an <%ae>%n'
+            echo ''
+          } > COMMITS.md
+
+      - name: Commit and push if changed
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add COMMITS.md
+          if git diff --staged --quiet; then
+            echo "COMMITS.md already up to date."
+            exit 0
+          fi
+          git commit -m "docs: refresh COMMITS.md [skip ci]"
+          git push

@@ -1,0 +1,26 @@
+# Build / IDE
+**/bin/
+**/obj/
+.vs/
+*.user
+*.suo
+*_wpftmp.csproj
+*_verify_build_check/
+
+# Logs & local state (runtime)
+**/Logs/
+**/state.json
+**/chat.json
+
+# Python
+__pycache__/
+*.py[cod]
+.Python
+venv/
+.venv/
+.env
+*.egg-info/
+
+# OS
+Thumbs.db
+Desktop.ini
