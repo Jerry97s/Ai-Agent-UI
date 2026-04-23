@@ -1,3 +1,4 @@
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;
@@ -17,7 +18,7 @@ public partial class MainView : Window
     public MainView()
     {
         InitializeComponent();
-        _agent = new AgentApiClient(AgentBaseUrl);
+        _agent = new AgentApiClient(ResolveAgentBaseUrl());
         _vm = new MainViewModel(_agent, Memory, new FileDialogService());
         DataContext = _vm;
 
@@ -31,7 +32,17 @@ public partial class MainView : Window
         };
     }
 
-    internal const string AgentBaseUrl = "http://127.0.0.1:8787";
+    /// <summary>기본값. 환경 변수 <c>AGENT_BASE_URL</c> 또는 <c>AI_AGENT_URL</c>로 재정의 가능.</summary>
+    internal const string DefaultAgentBaseUrl = "http://127.0.0.1:8787";
+
+    internal static string ResolveAgentBaseUrl()
+    {
+        var url = Environment.GetEnvironmentVariable("AGENT_BASE_URL")
+            ?? Environment.GetEnvironmentVariable("AI_AGENT_URL");
+        if (!string.IsNullOrWhiteSpace(url))
+            return url.Trim().TrimEnd('/');
+        return DefaultAgentBaseUrl.TrimEnd('/');
+    }
 
     protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
     {

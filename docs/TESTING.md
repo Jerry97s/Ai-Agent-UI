@@ -32,6 +32,21 @@ curl -s http://127.0.0.1:8787/health
 curl -s -X POST http://127.0.0.1:8787/chat -H "Content-Type: application/json" -d "{\"message\":\"ping\"}"
 ```
 
+## Python (pytest)
+
+저장소 루트에서:
+
+```powershell
+cd python
+py -m pip install -r requirements.txt
+py -m pytest -q
+```
+
+또는 `pip`/`pytest`가 PATH에 있으면 동일하게 실행합니다. CI(Ubuntu)에서는 Python 3.12에서 동작을 검증합니다.
+
 ## CI
 
-GitHub에 푸시 시 `.github/workflows/dotnet-ci.yml`에서 `dotnet build` 및 `dotnet test`가 실행됩니다.
+GitHub에 푸시 시 다음 워크플로가 실행됩니다.
+
+- `.github/workflows/dotnet-ci.yml` — `dotnet build` / `dotnet test` (Windows)
+- `.github/workflows/python-ci.yml` — `pytest` (Ubuntu, 데모 모드)

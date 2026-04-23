@@ -1,0 +1,29 @@
+name: Python CI
+
+on:
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+jobs:
+  pytest:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install
+        run: pip install -r requirements.txt
+
+      - name: Pytest
+        run: pytest -q
+        env:
+          # CI에서는 데모(에코) 모드로 계약만 검증
+          OPENAI_API_KEY: ""

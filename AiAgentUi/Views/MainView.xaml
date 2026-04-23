@@ -56,7 +56,7 @@
                                 <TextBlock Text="에이전트 채팅" FontWeight="SemiBold" FontSize="15"
                                            Foreground="#0F172A"/>
                                 <TextBlock Margin="0,3,0,0" FontSize="11.5" Foreground="#64748B"
-                                           Text="127.0.0.1:8787 · 고정 연결"/>
+                                           Text="기본 127.0.0.1:8787 · AGENT_BASE_URL로 변경 가능"/>
                             </StackPanel>
 
                             <StackPanel Grid.Column="2" Grid.ColumnSpan="3" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">

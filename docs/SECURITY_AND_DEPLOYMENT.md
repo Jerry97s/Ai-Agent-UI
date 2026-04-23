@@ -12,7 +12,8 @@
 
 ## 에이전트 서버(Python)
 
-- **환경 변수**: `AGENT_HOST`, `AGENT_PORT`(기본 `8787`), 응답 접두사 `AGENT_REPLY_PREFIX`.
+- **환경 변수**: `AGENT_HOST`, `AGENT_PORT`(기본 `8787`), 데모 프리픽스 `AGENT_REPLY_PREFIX`.
+- **LLM**: `OPENAI_API_KEY` 및 선택적 `OPENAI_BASE_URL`, `AGENT_CHAT_MODEL`. 키는 **절대 저장소에 커밋하지 말 것** — `python/.env`는 `.gitignore` 대상이며, [`python/.env.example`](../python/.env.example)만 버전 관리합니다.
 - 프로덕션에서는 **비밀키·API 키를 코드에 넣지 말고** 환경 변수 또는 비밀 저장소(OS Secret Manager, 컨테이너 시크릿 등)에서 주입합니다.
 - 외부에 바인딩할 경우 **`127.0.0.1`가 아닌 `0.0.0.0`** 사용 시 방화벽 규칙과 인증을 반드시 병행합니다.
 

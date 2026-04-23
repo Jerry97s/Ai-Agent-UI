@@ -1,14 +1,33 @@
 # 에이전트 HTTP API 요약
 
-기본 베이스 URL: `http://127.0.0.1:8787/` (환경 변수로 변경 가능)
+기본 베이스 URL: `http://127.0.0.1:8787/` (`AGENT_HOST` / `AGENT_PORT`).  
+클라이언트(WPF)는 실행 시 환경 변수 **`AGENT_BASE_URL`** / **`AI_AGENT_URL`** 로 베이스 URL을 바꿀 수 있습니다.
+
+## LLM 모드
+
+`python/.env` 또는 환경 변수로 **`OPENAI_API_KEY`** 를 설정하면 OpenAI 호환 Chat Completions를 사용합니다.
+
+- **`OPENAI_BASE_URL`**: Azure OpenAI, 로컬 **Ollama**(`http://localhost:11434/v1`) 등 OpenAI 호환 엔드포인트.
+- **`AGENT_CHAT_MODEL`**: 모델 ID (예: `gpt-4o-mini`, Ollama 모델명).
+
+키가 없으면 **데모(에코)** 모드입니다. 자세한 표는 [`python/.env.example`](../python/.env.example).
 
 ## `GET /health`
 
-**응답**
+**응답 예** (`200 OK`)
 
-- `200 OK`, 본문 예: `{"status":"ok"}`
+```json
+{
+  "status": "ok",
+  "version": "1.1.0",
+  "mode": "demo",
+  "model": null
+}
+```
 
-클라이언트는 성공 상태 코드만 확인합니다.
+`mode`는 `"demo"`(에코) 또는 `"llm"` 입니다. `model`은 LLM 모드일 때만 문자열로 채워집니다.
+
+클라이언트 기본 구현은 성공 상태 코드만 검사합니다.
 
 ## `POST /chat`
 
