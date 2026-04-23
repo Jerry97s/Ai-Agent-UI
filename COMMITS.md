@@ -5,6 +5,18 @@
 
 ---
 
+## 2026-04-23T12:34:11+09:00 · `97d13e5`
+
+**UI 화이트 테마·트레이·무한 로고 및 빌드 자산 정리**
+
+**작성자:** pjh <pjh>
+
+## 2026-04-23T01:46:03Z · `005aef2`
+
+**문서: COMMITS.md 자동 갱신 [skip ci]**
+
+**작성자:** github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+
 ## 2026-04-23T10:45:22+09:00 · `dca0e22`
 
 **워크플로: COMMITS.md 자동 커밋 메시지를 한글로 통일**
