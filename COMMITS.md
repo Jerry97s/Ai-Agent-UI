@@ -1,9 +1,13 @@
 # 커밋 기록 (Commit log)
 
-> **최신 커밋이 이 파일의 본문 상단에 가깝게 표시됩니다.**  
-> GitHub에 푸시하면 Actions가 이 파일을 최신 `git log`로 갱신합니다.  
+> **최신 커밋이 목록 상단입니다.** 자동 생성: `.github/workflows/update-commits-log.yml`
 > [← README로](./README.md)
 
 ---
 
-*로컬에서만 보는 경우: 아직 CI가 한 번도 돌지 않았다면 아래 목록은 비어 있거나 이전 상태일 수 있습니다.*
+## 2026-04-23T10:27:08+09:00 · `e046a26`
+
+**feat: initial import — WPF agent UI, FastAPI server, README & commit log CI**
+
+**작성자:** pjh <pjh>
+
