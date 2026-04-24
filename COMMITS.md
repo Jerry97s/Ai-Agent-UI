@@ -5,6 +5,18 @@
 
 ---
 
+## 2026-04-24T17:19:37+09:00 · `436f51e`
+
+**문서: README에 Description/Topics 추가**
+
+**작성자:** pjh <pjh>
+
+## 2026-04-23T03:34:47Z · `651f4f3`
+
+**문서: COMMITS.md 자동 갱신 [skip ci]**
+
+**작성자:** github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+
 ## 2026-04-23T12:34:11+09:00 · `97d13e5`
 
 **UI 화이트 테마·트레이·무한 로고 및 빌드 자산 정리**
