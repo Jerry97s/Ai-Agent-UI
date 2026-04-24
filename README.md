@@ -6,6 +6,14 @@
 
 Windows용 **WPF 클라이언트**와 **Python(FastAPI) 에이전트 서버**를 HTTP로 연결하는 데스크톱 AI 채팅 애플리케이션입니다. 기본 에이전트 주소는 `http://127.0.0.1:8787`이며, 클라이언트는 **`AGENT_BASE_URL`** 로 바꿀 수 있습니다.
 
+## Description
+
+Windows 전용(.NET 8) **WPF 데스크톱 AI 채팅 UI**입니다. FastAPI 기반 에이전트 서버와 연결해 다중 대화 탭·핀·파일 업로드·드래그앤드롭·트레이·전역 단축키(Ctrl+F12) 등 제품형 UX를 제공합니다.
+
+## Topics
+
+`wpf`, `dotnet`, `dotnet8`, `windows`, `desktop-app`, `mvvm`, `fastapi`, `ai-chat`, `tray`, `global-hotkey`
+
 ## 빠른 시작
 
 1. **에이전트 서버**  
